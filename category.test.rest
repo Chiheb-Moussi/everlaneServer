@@ -1,0 +1,25 @@
+###GET ALL CATEGORIES
+GET http://localhost:9000/api/category
+
+### ADD CATEGORY
+POST http://localhost:9000/api/category/create
+Content-Type: application/json
+
+{
+  "title": "Test rest"
+}
+
+### ADD SUB CATEGORY
+POST http://localhost:9000/api/subcategory/create
+Content-Type: application/json
+
+{
+  "title": "Test rest",
+  "category_id": "65dcd3c8f348c0c37a8df4ed"
+}
+
+### GET CATEGORY BY ID
+GET http://localhost:9000/api/category/65dcd3c8f348c0c37a8df4ed
+
+###GET ALL SUB CATEGORIES
+GET http://localhost:9000/api/subcategory

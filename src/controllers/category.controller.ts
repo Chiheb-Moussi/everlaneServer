@@ -32,10 +32,22 @@ const updateCategory = async (req: Request, res:Response)=> {
 const getAllCategories = async (req: Request, res: Response) => {
 
     try {
-        const categories = await CategoryModel.find();
+        const categories = await CategoryModel.find().populate('subCategories');
         res.status(200).json({categories});
     }catch (e) {
+        console.log(e);
         res.status(403).json({error: 'Could not find categories'})
+    }
+}
+
+const getCategoryById = async (req: Request, res: Response) => {
+    const {id} = req.params
+    try {
+        const category = await CategoryModel.findById(id).populate('subCategories');
+        res.status(200).json({category});
+    }catch (e) {
+        console.log(e);
+        res.status(403).json({error: 'Could not find category'})
     }
 }
 
@@ -54,5 +66,6 @@ export {
     createCategory,
     updateCategory,
     getAllCategories,
+    getCategoryById,
     deleteCategory
 }
